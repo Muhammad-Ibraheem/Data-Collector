@@ -1,0 +1,13 @@
+<div>
+  <h2>Log In</h2>
+<%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path)  do |f| %>
+ Email: <%= text_field_tag :email %><br>
+  Username: <%= text_field_tag :username %><br>
+  Password: <%= password_field_tag :password %><br>
+  <%= submit_tag "Log In" %>
+  <% end %>
+  <div class="col-xs-4 col-xs-offset-4">
+  [ <%= link_to "signup Page", new_user_path %> ]
+    </div>
+</div>
+<%= link_to "Log In with Google", '/auth/google_oauth2' %>

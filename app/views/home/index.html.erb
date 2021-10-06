@@ -1,0 +1,13 @@
+<h1>Data-Collector</h1>
+<p>Welcome user <%= current_user.username %></p>
+
+
+<div class="col-xs-4 col-xs-offset-4">
+[ <%= link_to "Signout", logout_path, method: :delete %> ]
+  </div>
+  <%= link_to "Edit your profile", edit_user_path(current_user) %>
+    <% if current_user.image.attached? %>
+    <p>
+    <%= image_tag current_user.image %>
+</p>
+    <% end %>

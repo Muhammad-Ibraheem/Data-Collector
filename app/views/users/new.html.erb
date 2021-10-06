@@ -1,0 +1,15 @@
+<div>
+  <h2>Sign Up</h2>
+  <%= form_for(@user, :html => {class: "form-horizontal", role: "form"})  do |f| %>
+  Email: <%= f.text_field :email, class: "form-control", placeholder: "Enter email", autofocus: true %>
+     <br>
+        Username: <%= f.text_field :username, class: "form-control", placeholder: "Enter username", autofocus: true %>
+           <br>
+    Password: <%= f.password_field :password,  class: "form-control", placeholder: "Enter password" %>
+<br />
+      <%= f.submit "Sign Up" %>
+  <% end %>
+  <div class="col-xs-4 col-xs-offset-4">
+  [ <%= link_to "Login Page", login_path %> ]
+    </div>
+</div>
