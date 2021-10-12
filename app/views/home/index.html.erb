@@ -2,12 +2,61 @@
 <p>Welcome user <%= current_user.username %></p>
 
 
-<div class="col-xs-4 col-xs-offset-4">
-[ <%= link_to "Signout", logout_path, method: :delete %> ]
-  </div>
-  <%= link_to "Edit your profile", edit_user_path(current_user) %>
-    <% if current_user.image.attached? %>
-    <p>
-    <%= image_tag current_user.image %>
-</p>
-    <% end %>
+    <div class="col-xs-4 col-xs-offset-4">
+    [ <%= link_to "Signout", logout_path, method: :delete %> ]
+      </div>
+      <%= link_to "Edit your profile", edit_user_path(current_user) %>
+        <% if current_user.image.attached? %>
+        <p>
+        <%= image_tag current_user.image %>
+    </p>
+        <% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Website</th>
+    <th>Company</th>
+  </tr>
+  <% @json.each do |j| %>
+  <tr>
+    <td><%= j['name']%></td>
+    <td><%= j['username']%></td>
+    <td><%= j['email']%></td>
+    <td><%= j['address']['suite']%>  <%= j['address']['street']%>, <%=j['address']['city']%></td>
+    <td><%= j['phone']%></td>
+    <td><%= j['website']%></td>
+    <td><%= j['company']['name']%>  (<%=j['company']['catchPhrase']%>)</td>
+  </tr>
+  <% end %>
+  </table>
+
+  <h1> Upload your csv</h1>
+  <%= form_for(Csv.new, :html => {class: "form-horizontal", role: "form"})  do |f| %>
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :name %>
+          </div>
+          <div class="col-sm-8">
+          <%= f.text_field :name, class: "form-control",  autofocus: true %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.file_field :csv, class: "form-control", autofocus: true %>
+        </div>
+      </div>
+      <%= f.submit "start searching"%>
+        <% end %>
+
+        <h1>All CSVS</h1>
+        <% if current_user.csvs.present? %>
+        <% current_user.csvs.each_with_index do |csv, index| %>
+          <%= index+1 %>. <%= link_to csv.name, csv_path(csv) %>
+        <br />
+        <% end %>
+        <% else %>
+        <h2>Upload CSVS to view here</h2>
+        <% end %>

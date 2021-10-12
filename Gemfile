@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'omniauth'
 gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
-
+gem 'google_search_results'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -62,3 +62,4 @@ group :production do
   #Use PG as the database for Production ENV
   gem 'pg'
 end
+gem 'rest-client', '~>2.1'

@@ -1,0 +1,10 @@
+<h1 align="centre"><%= @csv.name %></h1>
+
+<h2>Keywords</h2>
+<% @csv.keywords.each do |keyword| %>
+Name: <%= keyword.name %>
+<br />Total Search Results: <%= keyword.total_search_results %>
+<br>Processing Time: <%= keyword.time_taken %></br>
+HTML Code: <a href="<%= keyword.html_code %>" target="_blank"><%= keyword.html_code %></a>
+<br>
+<% end %>
